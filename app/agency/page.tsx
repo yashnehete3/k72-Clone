@@ -25,6 +25,20 @@ function agency() {
     'https://k72.ca/uploads/teamMembers/MEGGIE_480X640_2-480x640.jpg',
     'https://k72.ca/uploads/teamMembers/joel_480X640_3-480x640.jpg',
   ]
+  const pageref = useRef(null);
+  useGSAP(function(){
+    const t1 = gsap.timeline();
+    t1.to(pageref.current,{
+      scale:1.2,
+      duration:0.7,
+      ease:'power3.inOut'
+    });
+    t1.to(pageref.current,{
+      scale:1,
+      duration:0.7,
+      ease:'power4.out'
+    })
+  })
   gsap.registerPlugin(ScrollTrigger)
   useGSAP(function(){
     gsap.from(imagedivRef.current,{
@@ -57,8 +71,10 @@ function agency() {
     })
     })
   return (
-    <div className="bg-white text-black min-h-screen overflow-hidden">
-      <Stairs/>
+    <>
+    <Stairs/>
+    <div ref={pageref} className="bg-white text-black min-h-screen overflow-hidden">
+      
       <div ref = {imagedivRef} className="w-60 h-80  bg-black absolute top-40 left-112 rounded-3xl overflow-hidden ">
         <img ref = {image} className="h-full w-full object-cover transition:"  src="https://k72.ca/images/teamMembers/Carl_480x640.jpg?w=480&h=640&fit=crop&s=f0a84706bc91a6f505e8ad35f520f0b7" alt="" />
       </div>
@@ -108,6 +124,7 @@ function agency() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

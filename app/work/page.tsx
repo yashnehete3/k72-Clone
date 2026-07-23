@@ -1,6 +1,24 @@
+'use client'
 import React from 'react'
-
+import Stairs from '../stairs/page'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import {useRef} from 'react'
 function page() {
+    const pageref = useRef(null);
+     useGSAP(function(){
+    const t1 = gsap.timeline();
+    t1.to(pageref.current,{
+      scale:1.2,
+      duration:0.7,
+      ease:'power3.inOut'
+    });
+    t1.to(pageref.current,{
+      scale:1,
+      duration:0.7,
+      ease:'power4.out'
+    })
+  })
 
 
 const projects = [{
@@ -17,7 +35,8 @@ const projects = [{
 
 
   return (
-    <div className= 'h-lvh bg-white text-black'>
+    <div ref={pageref} className= 'h-lvh bg-white text-black'>
+        <Stairs/>
      <div className='flex absolute top-[15vw] z-10'>
       <h1 className='font-bold text-[8vw] '>WORK</h1>
          <div className='bold text-[2vw] mt-9 '>17</div>
